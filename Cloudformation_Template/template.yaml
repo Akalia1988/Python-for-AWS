@@ -1,1 +1,27 @@
 
+# cloudformation template to invoke our EC2, S3 lambda function.
+
+Resources:
+   EC2instanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: EC2instance
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+            Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+                
+
+  EC2InstanceFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: EC2Instance
+      Role: !GetAtt EC2Instance.Arn
+      Handler: index.my_handler
+      Code:
+        S3Bucket: $Arsh-mys3bucket
+        S3Key: EC2deploy.zip
+      Runtime: Python3.8
+   
