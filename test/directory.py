@@ -1,12 +1,11 @@
 
-# I will be using paramike,getpass module . It will help me to execute remote shell commands.
+# I will be using paramike module . It will help me to execute remote shell commands.
 # http://www.fabfile.org/
 
 import paramiko
 import os
 import subprocess
 import sys
-import getpass
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -22,8 +21,6 @@ def mkdir(folder_absolute_path):
     creates new folder
     """
 run('mkdir {0}'.format(folder_absolute_path))
-
-
 
 
 
