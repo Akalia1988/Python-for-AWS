@@ -1,0 +1,19 @@
+# YAML file in the main branch
+schedules:
+- cron: "0 9 * * MON"
+  displayName: At 09:00 on Every Monday
+  branches:
+    include:
+    - main
+    
+ steps:
+  - task: CloudFormationCreateStack
+    inputs:
+      awsCredentials: 'aws_tokens'
+      regionName: 'us-east-1'
+      stackName: 'EC2instance'
+      templateFile: templates/template.yaml
+      capabilityIAM: 'true'
+      capabilityNamedIAM: 'true'
+      
+# I have used Azure Devops to create cloud formation stack. I havent used Jenkins in a while, it would have taken me little longer to figure it out.
